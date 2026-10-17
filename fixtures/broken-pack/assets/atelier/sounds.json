@@ -1,0 +1,8 @@
+{
+  "chime": {
+    "sounds": [
+      "atelier:missing_chime",
+      { "name": "other:chime", "type": "event" }
+    ]
+  }
+}
