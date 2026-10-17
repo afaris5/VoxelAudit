@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "projectName": "broken-pack",
+  "sourceKind": "directory",
+  "scannedAt": 1792256449,
+  "durationMs": 4,
+  "totalBytes": 1014,
+  "assets": [
+    {
+      "path": "assets/atelier/blockstates/slate.json",
+      "kind": "blockstate",
+      "namespace": "atelier",
+      "bytes": 60,
+      "texture": null
+    },
+    {
+      "path": "assets/atelier/lang/en_us.json",
+      "kind": "language",
+      "namespace": "atelier",
+      "bytes": 14,
+      "texture": null
+    },
+    {
+      "path": "assets/atelier/models/block/slate.json",
+      "kind": "model",
+      "namespace": "atelier",
+      "bytes": 99,
+      "texture": null
+    },
+    {
+      "path": "assets/atelier/sounds.json",
+      "kind": "sound",
+      "namespace": "atelier",
+      "bytes": 123,
+      "texture": null
+    },
+    {
+      "path": "assets/atelier/textures/block/odd.png",
+      "kind": "texture",
+      "namespace": "atelier",
+      "bytes": 495,
+      "texture": {
+        "width": 15,
+        "height": 15,
+        "colorMode": "Rgba / Eight",
+        "hasAlpha": true,
+        "transparent": false
+      }
+    },
+    {
+      "path": "assets/atelier/textures/block/slate.png",
+      "kind": "texture",
+      "namespace": "atelier",
+      "bytes": 120,
+      "texture": {
+        "width": 16,
+        "height": 16,
+        "colorMode": "Rgba / Eight",
+        "hasAlpha": true,
+        "transparent": false
+      }
+    },
+    {
+      "path": "pack.mcmeta",
+      "kind": "metadata",
+      "namespace": "",
+      "bytes": 103,
+      "texture": null
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "category": "References",
+      "code": "reference.missing",
+      "path": "assets/atelier/blockstates/slate.json",
+      "message": "Missing local models resource 'atelier:block/absent'. Check the path or supply the dependency.",
+      "context": "assets/atelier/models/block/absent.json",
+      "line": null,
+      "namespace": "atelier"
+    },
+    {
+      "severity": "error",
+      "category": "JSON",
+      "code": "json.syntax",
+      "path": "assets/atelier/lang/en_us.json",
+      "message": "Invalid JSON: expected value at line 1 column 13",
+      "context": null,
+      "line": 1,
+      "namespace": "atelier"
+    },
+    {
+      "severity": "info",
+      "category": "References",
+      "code": "reference.external",
+      "path": "assets/atelier/models/block/slate.json",
+      "message": "External models reference 'minecraft:block/cube_all' is not included. It may be provided by vanilla or another pack/mod.",
+      "context": "assets/minecraft/models/block/cube_all.json",
+      "line": null,
+      "namespace": "atelier"
+    },
+    {
+      "severity": "warning",
+      "category": "References",
+      "code": "reference.missing",
+      "path": "assets/atelier/models/block/slate.json",
+      "message": "Missing local textures resource 'atelier:block/missing_slate'. Check the path or supply the dependency.",
+      "context": "assets/atelier/textures/block/missing_slate.png",
+      "line": null,
+      "namespace": "atelier"
+    },
+    {
+      "severity": "warning",
+      "category": "References",
+      "code": "reference.missing",
+      "path": "assets/atelier/sounds.json",
+      "message": "Missing local sounds resource 'atelier:missing_chime'. Check the path or supply the dependency.",
+      "context": "assets/atelier/sounds/missing_chime.ogg",
+      "line": null,
+      "namespace": "atelier"
+    },
+    {
+      "severity": "warning",
+      "category": "Textures",
+      "code": "texture.dimensions",
+      "path": "assets/atelier/textures/block/odd.png",
+      "message": "Texture is 15 × 15. Non-power-of-two dimensions may affect mipmapping; animation strips can be intentional.",
+      "context": null,
+      "line": null,
+      "namespace": "atelier"
+    }
+  ],
+  "namespaces": ["atelier"],
+  "counts": {
+    "error": 1,
+    "info": 1,
+    "warning": 4
+  },
+  "complete": true
+}

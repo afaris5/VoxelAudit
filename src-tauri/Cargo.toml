@@ -1,0 +1,39 @@
+[package]
+name = "voxelaudit"
+version = "0.1.0"
+description = "Local Minecraft asset inspection and validation"
+authors = []
+edition = "2021"
+license = "MIT"
+rust-version = "1.90"
+
+[lib]
+name = "voxelaudit_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[features]
+default = ["desktop"]
+desktop = ["dep:tauri", "dep:tauri-plugin-dialog", "dep:tauri-build"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [], optional = true }
+
+[dependencies]
+tauri = { version = "2", features = [], optional = true }
+tauri-plugin-dialog = { version = "2", optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+zip = { version = "2", default-features = false, features = ["deflate"] }
+png = "0.17"
+base64 = "0.22"
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[[bin]]
+name = "voxelaudit"
+required-features = ["desktop"]
+
+[profile.release]
+strip = true

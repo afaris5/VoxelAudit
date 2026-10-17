@@ -1,0 +1,20 @@
+name: Bug report
+description: Report a reproducible problem in VoxelAudit
+body:
+  - type: input
+    id: version
+    attributes:
+      label: VoxelAudit version and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps, expected result and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: fixture
+    attributes:
+      label: Minimal reproducible assets
+      description: Attach a small example you have permission to share. Remove personal paths and private assets.

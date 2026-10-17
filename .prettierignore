@@ -1,0 +1,12 @@
+node_modules
+dist
+src-tauri/target
+.toolchain
+package-lock.json
+Cargo.lock
+*.rs
+*.png
+*.ico
+*.zip
+fixtures/broken-pack/assets/atelier/lang/en_us.json
+src-tauri/gen

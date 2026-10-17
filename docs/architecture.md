@@ -1,0 +1,15 @@
+# Architecture
+
+The React interface calls four native commands: `scan`, `cancel_scan`, `preview`, and `export_report`. Scan handles opening and rescanning. Native dialogs choose projects and export destinations. No frontend API accepts an arbitrary absolute filesystem path. Event capabilities permit only subscribing to scan progress; no shell or generic filesystem permissions are exposed.
+
+`source.rs` walks directories without following symbolic links or reads ZIP entries directly into a bounded in-memory snapshot. It enforces entry, file and aggregate size limits, rejects unsafe archive paths, and records per-entry failures. Imported bytes are never executed or written back. The selected root should contain `assets`; wrapper directories are not automatically rebased. Supported files elsewhere in the root are still indexed and JSON-parsed.
+
+`engine.rs` decodes PNGs, parses JSON, creates the inventory and summarizes findings. `json.rs` preserves standard JSON values while detecting duplicate object keys, reporting up to 100 JSON pointer locations per file. `validation.rs` resolves standard model parents, texture declarations, aliases, legacy item overrides, blockstate model references and sound file references. Unqualified identifiers default to `minecraft`. Missing assets in the file's namespace are warnings; absent vanilla or other-namespace references are informational because dependencies are unknown. Local parent cycles and texture alias cycles are diagnosed. Unknown JSON fields are accepted. Standard-library ordered collections stabilize result ordering.
+
+Tauri runs scans, image previews and report writes on blocking workers. Progress reports file counts; directory discovery reports the processed count without a total. Cancellation is checked between files and documents, with bounded individual reads. A busy guard prevents overlapping scans. Only a successfully completed analysis replaces the current session; cancellation preserves the previous snapshot. Import failures result in an explicitly incomplete report.
+
+PNG metadata is reported from the original header and transparency is measured from decoded first-frame pixels after palette expansion, preserving 16-bit alpha precision. The source PNG bytes are passed to the webview without resaving. Preview assets are retrieved only from the current snapshot, so finding navigation cannot read outside the imported project. Text preview is limited separately from validation. Long lists are paginated.
+
+Export serializes the exact native report with relative asset paths and a Unix scan timestamp. Native export uses exclusive creation and refuses destinations inside the analyzed project. No source project path is included in reports. Runtime networking, telemetry, accounts, plugins that execute project code, and remote dependencies are absent. CSP disallows external content.
+
+The engine compiles without the `desktop` feature for independent, cross-platform integration tests. The desktop binary requires that feature. Node tooling and the Tauri CLI are development dependencies; the installed application needs neither Node nor Rust.
